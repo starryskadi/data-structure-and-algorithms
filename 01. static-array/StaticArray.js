@@ -1,8 +1,7 @@
-// Custom Implementation of a Static Array of same type
+// Custom Implementation of a Static Array
 class StaticArray {
-  constructor(size, type) {
+  constructor(size) {
     this.size = size;
-    this.type = type;
 
     this.current = 0;
     this.data = {};
@@ -78,3 +77,7 @@ staticArray.unshift("Testing3");
 staticArray.pop();
 staticArray.shift();
 console.log(staticArray);
+
+staticArray.push("Testing");
+staticArray.push("Testing");
+staticArray.push("Testing");
