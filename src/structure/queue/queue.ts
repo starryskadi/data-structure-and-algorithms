@@ -1,35 +1,43 @@
 import { LinkedNode } from "../linked_list/linked_node"
 
-export class Queue {
-    first: LinkedNode | null = null
-    current: LinkedNode | null = null
+export class Queue<T> {
+    first: LinkedNode<T> | null = null
+    last: LinkedNode<T> | null = null
     length: number = 0
 
-    enqueue(val: any): void {
-        const newNode = new LinkedNode(val)
+    enqueue(val: T): void {
+        const newNode = new LinkedNode<T>(val)
         if (!this.first) {
             this.first = newNode
-            this.current = this.first
+            this.last = this.first
         } else {
-            if (this.current) {
-                this.current.next = newNode
+            if (this.last) {
+                this.last.next = newNode
             }
-            this.current = newNode
-        }
+            this.last = newNode
+        } 
+
+        this.length++
     }
 
-    dequeue(): number | null {
+    dequeue(): T | null {
         if (!this.first) {
             return null
+        }
+
+        if (this.first === this.last) {
+            this.last = null
         }
 
         const holdingPointer = this.first
         this.first = this.first.next
 
+        this.length--
+
         return holdingPointer.val
     }
 
-    peek(): number | null {
+    peek(): T | null {
         return this.first ? this.first.val : null
     }
 
