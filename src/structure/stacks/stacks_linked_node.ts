@@ -1,15 +1,15 @@
 import { LinkedNode } from "../linked_list/linked_node"
 
 
-export class StackWithLinkedNode {
-    top: LinkedNode | null = null
-    bottom: LinkedNode | null = null
+export class StackWithLinkedNode<T> {
+    top: LinkedNode<T> | null = null
+    bottom: LinkedNode<T> | null = null
     length: number = 0
 
     constructor() {}
 
     push(val: any): void { 
-        const newNode = new LinkedNode(val)
+        const newNode = new LinkedNode<T>(val)
         if (!this.bottom) {
             this.bottom = newNode
             this.top = this.bottom
@@ -22,7 +22,7 @@ export class StackWithLinkedNode {
         this.length++
     }
 
-    pop(): LinkedNode | null {
+    pop(): LinkedNode<T> | null {
         if (!this.top) {
             return null
         }
@@ -38,7 +38,7 @@ export class StackWithLinkedNode {
         return holdingPointer
     }
 
-    peek(): LinkedNode | null {
+    peek(): LinkedNode<T> | null {
         if (!this.top) {
             return null
         }
