@@ -1,7 +1,7 @@
 import { LinkedNode } from "../../structure/linked_list/linked_node"
 
-export function mergeTwoLists(list1: LinkedNode | null, list2: LinkedNode | null): LinkedNode | null {
-    const dummy = new LinkedNode(0)
+export function mergeTwoLists(list1: LinkedNode<number> | null, list2: LinkedNode<number> | null): LinkedNode<number> | null {
+    const dummy = new LinkedNode<number>(0)
     let current = dummy
 
     let item1 = list1
@@ -30,7 +30,7 @@ export function mergeTwoLists(list1: LinkedNode | null, list2: LinkedNode | null
             }
         }
 
-        if (item1 && item2) {
+        if (item1 && item2 && item1.val && item2.val) {
             if (item2.val < item1.val) {
                 firstItem = item2
                 item2 = item2.next
