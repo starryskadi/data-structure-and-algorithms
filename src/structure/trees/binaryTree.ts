@@ -55,32 +55,23 @@ export class BinarySearchTree<T> {
         if (!this.root) {
             throw Error("There is no data in binary tree yet")
         }
-        let currentNode: BinaryTreeNode<T> = this.root
-        let foundNode: BinaryTreeNode<T> | null = null
+        let currentNode: BinaryTreeNode<T> | null = this.root
 
-        while (true)  {
-            // Decide whether it should put on left - if the value is lower than current node
+        while (currentNode)  {
             if (value === currentNode.value) {
-                foundNode = currentNode
-                break
+                return currentNode
             }
-            else if (value < currentNode.value) {
-                if (currentNode.left && currentNode.left.value) {
-                    currentNode = currentNode.left
-                } else if (!currentNode.left) {
-                    break
-                }
+            // Decide whether it should put on left - if the value is lower than current node
+            if (value < currentNode.value) {
+                currentNode =currentNode.left ? currentNode.left: null
+            } 
             // Decide whether it should put on the right - if the value is exceed than current node 
-            } else if (value > currentNode.value) {
-                if (currentNode.right && currentNode.right.value) {
-                    currentNode = currentNode.right
-                } else if (!currentNode.right) {
-                    break
-                }
+            else if (value > currentNode.value) {
+                currentNode =currentNode.right ? currentNode.right: null
             } 
         }     
         
-        return foundNode
+        return null
     }
 
     traverse(node: BinaryTreeNode<T>) {
