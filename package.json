@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "watch": "tsc-watch --onSuccess 'node ./dist/app.js'",
+    "watch": "jest --config jest.config.ts --watch",
     "test": "jest --config jest.config.ts"
   },
   "keywords": [],
