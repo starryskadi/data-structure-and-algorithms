@@ -11,8 +11,14 @@ export class BinaryTreeNode<T> {
     }
 }
 
+type BinaryTreeJson<T> = {
+    value: T, 
+    left: BinaryTreeJson<T> | undefined
+    right: BinaryTreeJson<T> | undefined
+}
+
 export class BinarySearchTree<T> {
-    root: BinaryTreeNode<T> | null = null 
+    root: BinaryTreeNode<T> | undefined
 
     constructor() {}
 
@@ -142,7 +148,18 @@ export class BinarySearchTree<T> {
         return true
     }
 
-    traverse(node: BinaryTreeNode<T>) {
-  
+    traverse(node: BinaryTreeNode<T> | undefined) {
+        if (!node) return undefined
+
+        const jsonTree: BinaryTreeJson<T> = {
+            value: node.value,
+            left: undefined, 
+            right: undefined
+        }
+
+        jsonTree.left = node.left ? this.traverse(node.left): undefined
+        jsonTree.right = node.right ? this.traverse(node.right): undefined
+
+        return jsonTree
     }
 }
