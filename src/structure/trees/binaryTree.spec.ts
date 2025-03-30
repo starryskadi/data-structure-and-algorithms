@@ -39,7 +39,7 @@ describe('Binary Tree', () => {
         binarySearchTree.insert(32)
         binarySearchTree.insert(44)
 
-        binarySearchTree.remove(30)
+        binarySearchTree.remove(50)
 
         const lookupItem = binarySearchTree.lookup(32)
 

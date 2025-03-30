@@ -75,6 +75,7 @@ export class BinarySearchTree<T> {
     }
 
     remove(value: T): boolean {
+        // TODO: fix the issue if removed the root node
         if (!this.root) {
             throw Error("There is no data in binary tree yet")  
         }
@@ -116,8 +117,13 @@ export class BinarySearchTree<T> {
             }
         }
 
+  
+
         if (deletePrevNode && deleteNode) {
-            if (deletePrevNode.left?.value === deleteNode.value) {
+            if (deleteNode.value === deletePrevNode.value) {
+                this.root = replaceNode
+            }
+            else if (deletePrevNode.left?.value === deleteNode.value) {
                 deletePrevNode.left = replaceNode
             } else if (deletePrevNode.right?.value === deleteNode.value) {
                 deletePrevNode.right = replaceNode
@@ -131,7 +137,7 @@ export class BinarySearchTree<T> {
             prevNode.left = undefined
         } else if (prevNode.right?.value === replaceNode.value) [
             prevNode.right = undefined
-        ]
+        ] 
 
         return true
     }
