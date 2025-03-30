@@ -27,4 +27,22 @@ describe('Binary Tree', () => {
 
         expect(() => binarySearchTree.insert(29)).toThrow()
     })
+
+    it("Binary Tree can be deleted", () => {
+        const binarySearchTree = new BinarySearchTree()
+        binarySearchTree.insert(50)
+        binarySearchTree.insert(30)
+        binarySearchTree.insert(55)
+
+        binarySearchTree.insert(29)
+        binarySearchTree.insert(40)
+        binarySearchTree.insert(32)
+        binarySearchTree.insert(44)
+
+        binarySearchTree.remove(30)
+
+        const lookupItem = binarySearchTree.lookup(32)
+
+        expect(lookupItem).toEqual(new BinaryTreeNode(32, new BinaryTreeNode(29), new BinaryTreeNode(40, undefined, new BinaryTreeNode(44))))
+    })
  })

@@ -74,6 +74,68 @@ export class BinarySearchTree<T> {
         return null
     }
 
+    remove(value: T): boolean {
+        if (!this.root) {
+            throw Error("There is no data in binary tree yet")  
+        }
+
+        let currentNode: BinaryTreeNode<T> = this.root
+        let prevNode: BinaryTreeNode<T> = currentNode
+
+        let deleteNode: BinaryTreeNode<T> | null = null
+        let deletePrevNode: BinaryTreeNode<T> | null = null
+    
+        let replaceNode: BinaryTreeNode<T> | null = null
+
+        while (true) {
+            if (value === currentNode.value) {
+                deletePrevNode = prevNode
+                deleteNode = currentNode
+                if (currentNode.right) {
+                    currentNode = currentNode.right
+                }
+            }  
+            else if (value < currentNode.value) {
+                if (!currentNode.left) {
+                    replaceNode = currentNode
+                    break
+                }
+            
+                prevNode = currentNode
+       
+                currentNode = currentNode.left
+          
+            } else {
+                if (!currentNode.right) {
+                    replaceNode = currentNode
+                    break
+                }
+                prevNode = currentNode
+        
+                currentNode = currentNode.right
+            }
+        }
+
+        if (deletePrevNode && deleteNode) {
+            if (deletePrevNode.left?.value === deleteNode.value) {
+                deletePrevNode.left = replaceNode
+            } else if (deletePrevNode.right?.value === deleteNode.value) {
+                deletePrevNode.right = replaceNode
+            }
+
+            replaceNode.left = deleteNode.left
+            replaceNode.right = deleteNode.right
+        }
+
+        if (prevNode.left?.value === replaceNode.value) {
+            prevNode.left = undefined
+        } else if (prevNode.right?.value === replaceNode.value) [
+            prevNode.right = undefined
+        ]
+
+        return true
+    }
+
     traverse(node: BinaryTreeNode<T>) {
   
     }
